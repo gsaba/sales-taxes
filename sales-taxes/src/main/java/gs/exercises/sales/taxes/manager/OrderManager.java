@@ -20,13 +20,13 @@ public class OrderManager {
 
 		for (OrderItem orderItem : orderItems) {
 			
-			BigDecimal taxAmount = getItemTaxAmountRounded(orderItem);
-			BigDecimal grossAmount = orderItem.getUnitPrice().add(taxAmount);
-			BigDecimal total = grossAmount.multiply(new BigDecimal(orderItem.getQuantity()));
+			BigDecimal unitTaxAmount = getItemTaxAmountRounded(orderItem);
+			BigDecimal unitPriceGross = orderItem.getUnitPrice().add(unitTaxAmount);
+			BigDecimal orderItemTotal = unitPriceGross.multiply(new BigDecimal(orderItem.getQuantity()));
 			
-			orderItem.setTotal(total);
-			orderSalesTaxes = orderSalesTaxes.add(taxAmount.multiply(new BigDecimal(orderItem.getQuantity())));
-			orderTotal = orderTotal.add(total).setScale(2, RoundingMode.HALF_DOWN);
+			orderItem.setTotal(orderItemTotal);
+			orderSalesTaxes = orderSalesTaxes.add(unitTaxAmount.multiply(new BigDecimal(orderItem.getQuantity())));
+			orderTotal = orderTotal.add(orderItemTotal).setScale(2, RoundingMode.HALF_DOWN);
 		}
 		
 		Order order = new Order();
