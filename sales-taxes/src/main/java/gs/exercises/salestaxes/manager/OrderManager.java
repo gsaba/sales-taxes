@@ -1,11 +1,11 @@
-package gs.exercises.sales.taxes.manager;
+package gs.exercises.salestaxes.manager;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import gs.exercises.sales.taxes.model.Order;
-import gs.exercises.sales.taxes.model.OrderItem;
+import gs.exercises.salestaxes.model.Order;
+import gs.exercises.salestaxes.model.OrderItem;
 
 public class OrderManager {
 
